@@ -41,7 +41,7 @@ This makes it super easy for local developers to merge their env to
 the different servers while at time keep a local .env and .env.example
 
 ~~~
-php artisan envdeployer:make_example
+php artisan envdeployer:make-example
 ~~~
 
 Would then setup example with random values

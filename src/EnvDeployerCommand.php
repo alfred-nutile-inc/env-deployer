@@ -14,7 +14,7 @@ class EnvDeployerCommand extends Command
      *
      * @var string
      */
-    protected $signature = 'envdeploy:push {target}';
+    protected $signature = 'envdeployer:push {target}';
 
     /**
      * The console command description.

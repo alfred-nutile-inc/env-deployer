@@ -36,11 +36,11 @@ class BuildArrayFromEnv
 
     private function loadEnvFromFile()
     {
-        $this->filePath = base_path($this->env_name);
+        $this->setFilePath(base_path($this->env_name));
 
         $this->checkForFile();
 
-        $this->makeEvnArrayFromFile();
+        $this->makeEnvArrayFromFile();
 
         return $this->env;
     }
@@ -187,6 +187,16 @@ class BuildArrayFromEnv
         $this->target_env[] = $target_env;
     }
 
+    public function setFilePath($filePath)
+    {
+        $this->filePath = $filePath;
+    }
+
+    public function getFilePath()
+    {
+        return $this->filePath;
+    }
+
     private function checkForFile()
     {
         if(!File::exists($this->filePath))
@@ -209,7 +219,7 @@ class BuildArrayFromEnv
         return $subString;
     }
 
-    private function makeEvnArrayFromFile()
+    private function makeEnvArrayFromFile()
     {
         /**
          * Thanks to Dotenv library by vlucas
