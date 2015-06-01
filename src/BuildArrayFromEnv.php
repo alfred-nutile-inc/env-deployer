@@ -36,7 +36,7 @@ class BuildArrayFromEnv
 
     private function loadEnvFromFile()
     {
-        $this->filePath = base_path($this->env_name);
+        $this->setFilePath(base_path($this->env_name));
 
         $this->checkForFile();
 
@@ -185,6 +185,16 @@ class BuildArrayFromEnv
     public function setTargetEnv($target_env)
     {
         $this->target_env[] = $target_env;
+    }
+
+    public function setFilePath($filePath)
+    {
+        $this->filePath = $filePath;
+    }
+
+    public function getFilePath()
+    {
+        return $this->filePath;
     }
 
     private function checkForFile()
