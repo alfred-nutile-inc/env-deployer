@@ -40,7 +40,7 @@ class BuildArrayFromEnv
 
         $this->checkForFile();
 
-        $this->makeEvnArrayFromFile();
+        $this->makeEnvArrayFromFile();
 
         return $this->env;
     }
@@ -209,7 +209,7 @@ class BuildArrayFromEnv
         return $subString;
     }
 
-    private function makeEvnArrayFromFile()
+    private function makeEnvArrayFromFile()
     {
         /**
          * Thanks to Dotenv library by vlucas
