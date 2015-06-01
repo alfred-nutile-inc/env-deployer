@@ -2,7 +2,7 @@
 
 See the [video](http://youtu.be/ppEzRgGSdFw)
 
-![envdeploy](https://www.dropbox.com/s/6q8y2jonnv08sef/envdeployer.png?dl=0)
+![envdeploy](https://dl.dropboxusercontent.com/6q8y2jonnv08sef/envdeployer.png?dl=0)
 
 
 
