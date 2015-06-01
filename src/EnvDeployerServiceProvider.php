@@ -21,11 +21,17 @@ class EnvDeployerServiceProvider extends \Illuminate\Support\ServiceProvider
             }
         );
 
-        $this->commands('envdeployer.push');
+        $this->app['envdeployer.make-example'] = $this->app->share(
+            function ($app) {
+                return new EnvDeployerMakeExampleCommand(new BuildArrayFromEnv());
+            }
+        );
+
+        $this->commands('envdeployer.push', 'envdeployer.make-example');
     }
 
     public function provides()
     {
-        return ['envdeployer.push'];
+        return ['envdeployer.push', 'envdeployer.make-example'];
     }
 }
