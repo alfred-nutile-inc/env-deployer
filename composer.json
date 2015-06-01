@@ -1,0 +1,20 @@
+{
+  "name": "alfred-nutile-inc/env-deployer",
+  "description": "Makes deploying Env super easy",
+  "authors": [
+    {
+      "name": "Alfred Nutile Inc",
+      "email": "me@alfrednutile.info"
+    }
+  ],
+  "require": {
+    "php": ">=5.4.0",
+    "illuminate/support": "*",
+    "vlucas/phpdotenv": "*"
+  },
+  "autoload": {
+    "psr-4": {
+      "AlfredNutileInc\\PasswordResetter\\": "src/"
+    }
+  }
+}
