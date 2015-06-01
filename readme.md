@@ -5,7 +5,6 @@ See the [video](http://youtu.be/ppEzRgGSdFw)
 ![envdeploy](https://dl.dropboxusercontent.com/s/6q8y2jonnv08sef/envdeployer.png?dl=0)
 
 
-
 This will take your local environment and deploy it to the selected server
 
 Your config file will have the list of servers
@@ -67,8 +66,66 @@ php artisan envdeployer:get_and_merge dev
 
 Would get dev and merge it into your local setting `#@dev=foo` as needed and adding values you are missing
 
+## Install
 
-# Install
+You can install the package via composer:
+
+``` bash
+composer require 'alfred-nutile-inc/env-deployer:dev-master'
+```
+You must install this service provider:
+```php
+// config/app.php
+
+'providers' => [
+    ...
+    'AlfredNutileInc\EnvDeployer\EnvDeployerServiceProvider',
+    ...
+];
+```
+
+Now to setup your config:
+
+``` bash
+php artisan vendor:publish --provider="AlfredNutileInc\EnvDeployer\EnvDeployerServiceProvider"
+```
+A file named ``envdeployer.php`` will be created in the config directory. The options you can set in the file should be self-explanatory.
+```php
+
+<?php
+
+return [
+
+    'connections' => [
+
+        /*
+         * The environment name.
+         */
+        'dev' => [
+
+            /*
+             * The hostname to send the env file to
+             */
+            'host'  => 'example_target.dev',
+
+            /*
+             * The username to be used when connecting to the server where the logs are located
+             */
+            'user' => 'vagrant',
+
+            /*
+             * The full path to the directory where the .env is located MUST end in /
+             */
+            'rootEnvDirectory' => '/home/vagrant/mysite/',
+
+            'port' => 2222
+        ],
+    ],
+];
+
+```
+
+
 
 # RoadMap
 
