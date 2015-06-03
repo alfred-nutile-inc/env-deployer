@@ -1,0 +1,3 @@
+APP_ENV=dev
+DB_NAME=dev_db
+DB_HOST=dev_host

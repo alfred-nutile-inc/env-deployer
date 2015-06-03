@@ -13,14 +13,11 @@ use AlfredNutileInc\EnvDeployer\Exceptions\TargetSettingNotFoundException;
 use AlfredNutileInc\EnvDeployer\Exceptions\TokenMissingValueException;
 use Illuminate\Support\Facades\File;
 
-class BuildArrayFromEnv
+class BuildArrayFromEnv extends BaseDeployer
 {
 
-    protected $env = [];
-    protected $env_name = '.env';
     protected $target;
     protected $target_env = [];
-    protected $filePath;
     protected $found_targets_originals = [];
 
     public function __construct($target = 'dev')
@@ -28,21 +25,21 @@ class BuildArrayFromEnv
         $this->target = $target;
     }
 
+    public function setTarget($target)
+    {
+        $this->target = $target;
+        return $this;
+    }
+
+    public function getTarget()
+    {
+        return $this->target;
+    }
+
     public function buildOutNewEnvArray()
     {
         $this->getEnv();
         $this->setTargetValues();
-    }
-
-    private function loadEnvFromFile()
-    {
-        $this->setFilePath(base_path($this->env_name));
-
-        $this->checkForFile();
-
-        $this->makeEnvArrayFromFile();
-
-        return $this->env;
     }
 
     protected function setTargetValues()
@@ -141,41 +138,6 @@ class BuildArrayFromEnv
         return strpos($value, '#@' . $this->target);
     }
 
-    public function getEnv()
-    {
-        if(empty($this->env))
-            $this->setEnv();
-        return $this->env;
-    }
-
-    public function setEnv($env = array())
-    {
-        if(empty($env))
-            $env = $this->loadEnvFromFile();
-        $this->env = $env;
-    }
-
-    public function getEnvName()
-    {
-        return $this->env_name;
-    }
-
-    public function setEnvName($env_name)
-    {
-        $this->env_name = $env_name;
-        return $this;
-    }
-
-    public function getTarget()
-    {
-        return $this->target;
-    }
-
-    public function setTarget($target)
-    {
-        $this->target = $target;
-        return $this;
-    }
 
     public function getTargetEnv()
     {
@@ -187,22 +149,6 @@ class BuildArrayFromEnv
         $this->target_env[] = $target_env;
     }
 
-    public function setFilePath($filePath)
-    {
-        $this->filePath = $filePath;
-    }
-
-    public function getFilePath()
-    {
-        return $this->filePath;
-    }
-
-    private function checkForFile()
-    {
-        if(!File::exists($this->filePath))
-            throw new \Exception(sprintf("No file %s found at %s",
-                $this->env_name, $this->filePath));
-    }
 
     private function extractValueFromToken($token)
     {
@@ -219,19 +165,7 @@ class BuildArrayFromEnv
         return $subString;
     }
 
-    private function makeEnvArrayFromFile()
-    {
-        /**
-         * Thanks to Dotenv library by vlucas
-         */
-        $autodetect = ini_get('auto_detect_line_endings');
-        ini_set('auto_detect_line_endings', '1');
-        $lines = file($this->filePath, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
-        ini_set('auto_detect_line_endings', $autodetect);
 
-        $this->env = $lines;
-
-    }
 
     private function notRelatedToken($related_value, $related_token)
     {

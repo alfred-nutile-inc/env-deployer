@@ -1,0 +1,8 @@
+#@stage=stage
+APP_ENV=local
+#@stage=stage_db
+#@prod=prod_db
+DB_NAME=local_db
+#@stage=stage_host
+#@prod=prod_host
+DB_HOST=local_host

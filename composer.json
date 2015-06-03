@@ -10,12 +10,17 @@
   "require": {
     "php": ">=5.4.0",
     "illuminate/support": "*",
-    "vlucas/phpdotenv": "~1.0"
+    "vlucas/phpdotenv": "~1.0",
+    "symfony/process": "dev-master",
+    "illuminate/contracts": "*",
+    "illuminate/console": "*",
+    "illuminate/filesystem": "*"
   },
   "require-dev": {
     "mockery/mockery": "0.9.*",
     "phpunit/phpunit": "~4.0",
-    "fzaninotto/faker": "1.4.0"
+    "fzaninotto/faker": "1.4.0",
+    "symfony/var-dumper": "^2.7"
   },
   "autoload": {
     "psr-4": {
