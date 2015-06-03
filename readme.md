@@ -1,3 +1,6 @@
+[![Build Status](https://travis-ci.org/alfred-nutile-inc/env-deployer.svg)](https://travis-ci.org/alfred-nutile-inc/env-deployer)
+
+
 # Env Deployer
 
 See the [video](http://youtu.be/ppEzRgGSdFw)
