@@ -139,4 +139,4 @@ Make it a true laravel 5 library with config settings
 
 2) get file from target and merge into local
 
-3) share with developers
+3) share command so teams can share the file securely
