@@ -11,7 +11,7 @@
     "php": ">=5.4.0",
     "illuminate/support": "*",
     "vlucas/phpdotenv": "~1.0",
-    "symfony/process": "dev-master",
+    "symfony/process": "*",
     "illuminate/contracts": "*",
     "illuminate/console": "*",
     "illuminate/filesystem": "*"
