@@ -17,6 +17,8 @@ class EnvDeployerMakeExampleCommand extends Command
      */
     protected $signature = 'envdeployer:make-example {--from=<base_path>/.env} {--to=<base_path>/.env.example}';
 
+    protected $name = 'envdeployer:make-example';
+
     /**
      * The console command description.
      *
@@ -47,7 +49,16 @@ class EnvDeployerMakeExampleCommand extends Command
     {
         list($from, $to) = $this->getFromToFilePaths();
 
-        $this->ba->setFilePath($from);
+        $exampleSettings = $this->makeExampleEnvArray($from);
+
+        file_put_contents($to, implode("\n", $exampleSettings));
+
+        $this->info('Example has been updated: ' . $to);
+    }
+
+    public function makeExampleEnvArray($envPath)
+    {
+        $this->ba->setFilePath($envPath);
         $this->ba->buildOutNewEnvArray();
 
         $envSettings = $this->ba->getEnv();
@@ -62,9 +73,7 @@ class EnvDeployerMakeExampleCommand extends Command
             }
         }
 
-        file_put_contents($to, implode("\n", $exampleSettings));
-
-        $this->info('Example has been updated: ' . $to);
+        return $exampleSettings;
     }
 
     /**
