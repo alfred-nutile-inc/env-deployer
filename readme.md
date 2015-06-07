@@ -135,8 +135,6 @@ Immediate Todo Items
 Make it a true laravel 5 library with config settings
 
 
-1) send file to target environment
+1) get file from target and merge into local
 
-2) get file from target and merge into local
-
-3) share command so teams can share the file securely
+2) share command so teams can share the file securely
