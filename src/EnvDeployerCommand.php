@@ -9,6 +9,8 @@ use Symfony\Component\Process\Process;
 
 class EnvDeployerCommand extends Command
 {
+    protected $name = 'envdeployer:push';
+    
     /**
      * The name and signature of the console command.
      *
