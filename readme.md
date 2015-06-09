@@ -2,7 +2,7 @@
 
 # Env Deployer
 
-** Only works with 5.1 and greater **
+**Only works with 5.1 and greater**
 
 See the [video](http://youtu.be/ppEzRgGSdFw)
 
