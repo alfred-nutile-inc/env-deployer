@@ -2,6 +2,8 @@
 
 # Env Deployer
 
+** Only works with 5.1 and greater **
+
 See the [video](http://youtu.be/ppEzRgGSdFw)
 
 ![envdeploy](https://dl.dropboxusercontent.com/s/6q8y2jonnv08sef/envdeployer.png?dl=0)
