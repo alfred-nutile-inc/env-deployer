@@ -15,6 +15,7 @@ use Illuminate\Support\Facades\File;
 class BaseDeployer {
 
     protected $filePath;
+    protected $target;
     protected $env = [];
     protected $env_name = '.env';
     protected $filesystem;
@@ -47,6 +48,17 @@ class BaseDeployer {
     {
         $this->env_name = $env_name;
         return $this;
+    }
+
+    public function setTarget($target)
+    {
+        $this->target = $target;
+        return $this;
+    }
+
+    public function getTarget()
+    {
+        return $this->target;
     }
 
     /**

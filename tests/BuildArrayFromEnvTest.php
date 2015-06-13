@@ -10,7 +10,7 @@ class BuildArrayFromEnvTest extends \TestCase
      */
     public function should_load_file()
     {
-        $this->markTestSkipped("Just not needed on codship");
+        $this->markTestSkipped("Just not needed on codeship");
 
         $ba = (new BuildArrayFromEnv())->setTarget('dev');
         $results = $ba->getEnv();

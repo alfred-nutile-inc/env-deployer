@@ -27,7 +27,13 @@ class EnvDeployerServiceProvider extends \Illuminate\Support\ServiceProvider
             }
         );
 
-        $this->commands('envdeployer.push', 'envdeployer.make-example');
+        $this->app['envdeployer.share'] = $this->app->share(
+            function ($app) {
+                return new SharingEnv();
+            }
+        );
+
+        $this->commands('envdeployer.push', 'envdeployer.make-example', 'envdeveloper.share');
     }
 
     public function provides()

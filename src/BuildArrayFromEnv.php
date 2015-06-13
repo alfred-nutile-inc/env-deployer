@@ -16,24 +16,12 @@ use Illuminate\Support\Facades\File;
 class BuildArrayFromEnv extends BaseDeployer
 {
 
-    protected $target;
     protected $target_env = [];
     protected $found_targets_originals = [];
 
     public function __construct($target = 'dev')
     {
         $this->target = $target;
-    }
-
-    public function setTarget($target)
-    {
-        $this->target = $target;
-        return $this;
-    }
-
-    public function getTarget()
-    {
-        return $this->target;
     }
 
     public function buildOutNewEnvArray()
