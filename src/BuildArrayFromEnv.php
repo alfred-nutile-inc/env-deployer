@@ -9,8 +9,10 @@
 namespace AlfredNutileInc\EnvDeployer;
 
 
+use AlfredNutileInc\EnvDeployer\Exceptions\ConfigMissingEnvironmentException;
 use AlfredNutileInc\EnvDeployer\Exceptions\TargetSettingNotFoundException;
 use AlfredNutileInc\EnvDeployer\Exceptions\TokenMissingValueException;
+use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\File;
 
 class BuildArrayFromEnv extends BaseDeployer
@@ -72,6 +74,7 @@ class BuildArrayFromEnv extends BaseDeployer
     {
         return substr($value, 2);
     }
+
 
     private function getNextPossibleTarget($related_token)
     {

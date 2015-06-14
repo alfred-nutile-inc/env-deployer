@@ -52,7 +52,6 @@ class ShareCommand extends Command
     {
         $this->ba = new BuildArrayFromEnv();
 
-        $this->target = $this->argument('target');
 
         $this->ba->setTarget($this->target)->buildOutNewEnvArray();
 

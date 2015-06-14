@@ -87,7 +87,7 @@ class EnvDeployerCommand extends Command
         $this->target = $target;
     }
 
-    private function loadTargetSshFromConfig()
+    public function loadTargetSshFromConfig()
     {
         $config = Config::get('envdeployer.connections.' . $this->target);
         if(empty($config))

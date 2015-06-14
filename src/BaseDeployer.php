@@ -9,7 +9,10 @@
 namespace AlfredNutileInc\EnvDeployer;
 
 
+use AlfredNutileInc\EnvDeployer\Exceptions\ConfigMissingEnvironmentException;
+use Illuminate\Contracts\Config\Repository;
 use Illuminate\Filesystem\Filesystem;
+use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\File;
 
 class BaseDeployer {
@@ -19,6 +22,8 @@ class BaseDeployer {
     protected $env = [];
     protected $env_name = '.env';
     protected $filesystem;
+    protected $config;
+    protected $target_directory;
 
     public function checkForFile($path = false)
     {
@@ -32,6 +37,7 @@ class BaseDeployer {
     public function setFilePath($filePath)
     {
         $this->filePath = $filePath;
+        return $this;
     }
 
     public function getFilePath()
@@ -85,6 +91,7 @@ class BaseDeployer {
     {
 
         $path_with_name = ($path_with_name) ? $path_with_name : $this->filePath;
+
         /**
          * Thanks to Dotenv library by vlucas
          */
@@ -96,16 +103,16 @@ class BaseDeployer {
         return $lines;
     }
 
-    private function loadEnvFromFile()
+    public function loadEnvFromFile()
     {
-        $this->setFilePath(
-            base_path($this->env_name));
+        if($this->filePath == null)
+            $this->setFilePath(base_path($this->env_name));
 
         $this->checkForFile();
 
         $this->env = $this->makeEnvArrayFromFile();
 
-        return $this->env;
+        return $this;
     }
 
     public function getEnv()
@@ -122,4 +129,46 @@ class BaseDeployer {
         $this->env = $env;
     }
 
+    public function loadTargetSshFromConfig()
+    {
+        $config = $this->getFromConfig('envdeployer.connections.' . $this->target);
+
+        if(empty($config))
+            throw new ConfigMissingEnvironmentException(sprintf("Please make sure you have %s set in the config file", $this->target));
+
+        $this->target_directory = $config;
+    }
+
+    public function getFromConfig($key)
+    {
+        if($this->config == null)
+            $this->setConfig();
+
+        return $this->config->get($key);
+    }
+
+    public function getConfig()
+    {
+        return $this->config;
+    }
+
+    public function setConfig(Repository $repository = null)
+    {
+        if($repository == null)
+            $repository = App::make('Illuminate\Contracts\Config\Repository');
+
+        $this->config = $repository;
+
+        return $this;
+    }
+
+    public function getTargetDirectory()
+    {
+        return $this->target_directory;
+    }
+
+    public function setTargetDirectory($target_directory)
+    {
+        $this->target_directory = $target_directory;
+    }
 }
