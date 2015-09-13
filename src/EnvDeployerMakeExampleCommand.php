@@ -15,7 +15,7 @@ class EnvDeployerMakeExampleCommand extends Command
      *
      * @var string
      */
-    protected $signature = 'envdeployer:make-example {--from=<base_path>/.env} {--to=<base_path>/.env.example}';
+    protected $signature = 'envdeployer:make-example {--from= : /path/to/.env. Default to <base_path>/.env} {--to= : /path/to/.env.example. Default to <base_path>/.env.example}';
 
     protected $name = 'envdeployer:make-example';
 
@@ -74,20 +74,6 @@ class EnvDeployerMakeExampleCommand extends Command
         }
 
         return $exampleSettings;
-    }
-
-    /**
-     * Get the console command options.
-     * For compatibility with L5.0
-     *
-     * @return array
-     */
-    protected function getOptions()
-    {
-        return [
-            ['from', null, InputOption::VALUE_OPTIONAL | InputOption::VALUE_REQUIRED, 'The file path for the source .env', base_path('.env')],
-            ['to', null, InputOption::VALUE_OPTIONAL | InputOption::VALUE_REQUIRED, 'The file path for the destination .env.example', base_path('.env.example')],
-        ];
     }
 
     /**
