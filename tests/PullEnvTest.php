@@ -3,9 +3,9 @@ use AlfredNutileInc\EnvDeployer\PullEnv;
 
 if(!function_exists('base_path'))
 {
-    function base_path()
+    function base_path($arg = '')
     {
-        return '';
+        return __DIR__ . '/../' . $arg;
     }
 }
 class PullEnvTest extends \TestCase {

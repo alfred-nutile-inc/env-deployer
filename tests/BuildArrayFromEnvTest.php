@@ -10,7 +10,8 @@ class BuildArrayFromEnvTest extends \TestCase
      */
     public function should_load_file()
     {
-        $this->markTestSkipped("Just not needed on codship");
+        $this->markTestSkipped("Just not needed on codeship");
+
 
         $ba = (new BuildArrayFromEnv())->setTarget('dev');
         $results = $ba->getEnv();
@@ -45,6 +46,23 @@ class BuildArrayFromEnvTest extends \TestCase
         $this->assertEquals('APP_ENV=\'bar\'', $ba->getTargetEnv()[0]);
         $this->assertEquals('FOO_BAR=\'foo\'', $ba->getTargetEnv()[1]);
         $this->assertCount(2, $ba->getTargetEnv());
+    }
+
+    /**
+     * @test
+     */
+    public function make_sure_false_has_no_quotes()
+    {
+        $ba = (new BuildArrayFromEnv())->setTarget('dev');
+        $ba->setEnv(
+            [
+                "#@dev=false",
+                "#@stage=false",
+                "APP_ENV=true",
+            ]);
+        $ba->buildOutNewEnvArray();
+
+        $this->assertEquals('APP_ENV=false', $ba->getTargetEnv()[0]);
     }
 
     /**

@@ -21,20 +21,26 @@ class BaseDeployer {
 
     public function checkForFile($path = false)
     {
-        $path = ($path) ? $path : $this->filePath;
+        $path = ($path) ? $path : $this->getFilePath();
 
         if(!$this->getFilesystem()->exists($path))
             throw new \Exception(sprintf("No file found at -> %s",
                 $path));
     }
 
-    public function setFilePath($filePath)
+    public function setFilePath($filePath = false)
     {
+        if($filePath == false)
+            $filePath = base_path();
+
         $this->filePath = $filePath;
     }
 
     public function getFilePath()
     {
+        if($this->filePath == null)
+            $this->setFilePath();
+
         return $this->filePath;
     }
 
@@ -73,6 +79,7 @@ class BaseDeployer {
     {
 
         $path_with_name = ($path_with_name) ? $path_with_name : $this->filePath;
+
         /**
          * Thanks to Dotenv library by vlucas
          */
