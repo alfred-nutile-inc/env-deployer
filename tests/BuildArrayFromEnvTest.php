@@ -30,7 +30,7 @@ class BuildArrayFromEnvTest extends \TestCase
         $ba->setEnv(["#@dev=bar", "#@stage=foo", "APP_ENV=local"]);
         $ba->buildOutNewEnvArray();
 
-        $this->assertEquals('APP_ENV=\'bar\'', $ba->getTargetEnv()[0]);
+        $this->assertEquals('APP_ENV=bar', $ba->getTargetEnv()[0]);
         $this->assertCount(1, $ba->getTargetEnv());
     }
 
@@ -43,7 +43,7 @@ class BuildArrayFromEnvTest extends \TestCase
         $ba->setEnv(["#@dev=bar", "#@stage=foo", "APP_ENV=local", "FOO_BAR='foo'"]);
         $ba->buildOutNewEnvArray();
 
-        $this->assertEquals('APP_ENV=\'bar\'', $ba->getTargetEnv()[0]);
+        $this->assertEquals('APP_ENV=bar', $ba->getTargetEnv()[0]);
         $this->assertEquals('FOO_BAR=\'foo\'', $ba->getTargetEnv()[1]);
         $this->assertCount(2, $ba->getTargetEnv());
     }
@@ -83,9 +83,9 @@ class BuildArrayFromEnvTest extends \TestCase
             ]);
         $ba->buildOutNewEnvArray();
 
-        $this->assertEquals('APP_ENV=\'bar\'', $ba->getTargetEnv()[0]);
+        $this->assertEquals('APP_ENV=bar', $ba->getTargetEnv()[0]);
         $this->assertEquals('FOO_BAR=\'foo\'', $ba->getTargetEnv()[1]);
-        $this->assertEquals('FOO_BAR2=\'bar2\'', $ba->getTargetEnv()[2]);
+        $this->assertEquals('FOO_BAR2=bar2', $ba->getTargetEnv()[2]);
         $this->assertCount(3, $ba->getTargetEnv());
     }
 
@@ -107,9 +107,9 @@ class BuildArrayFromEnvTest extends \TestCase
             ]);
         $ba->buildOutNewEnvArray();
 
-        $this->assertEquals('APP_ENV=\'foo\'', $ba->getTargetEnv()[0]);
+        $this->assertEquals('APP_ENV=foo', $ba->getTargetEnv()[0]);
         $this->assertEquals('FOO_BAR=\'foo\'', $ba->getTargetEnv()[1]);
-        $this->assertEquals('FOO_BAR2=\'bar3\'', $ba->getTargetEnv()[2]);
+        $this->assertEquals('FOO_BAR2=bar3', $ba->getTargetEnv()[2]);
         $this->assertCount(3, $ba->getTargetEnv());
     }
 

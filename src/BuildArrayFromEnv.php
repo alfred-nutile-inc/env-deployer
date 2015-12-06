@@ -77,7 +77,7 @@ class BuildArrayFromEnv extends BaseDeployer
         if(is_numeric($value_from_token))
             return sprintf("%s=%d", $target_key_value_removed, $value_from_token);
 
-        return sprintf("%s='%s'", $target_key_value_removed, $value_from_token);
+        return sprintf("%s=%s", $target_key_value_removed, $value_from_token);
     }
 
     protected function stripStartingTags($value)
