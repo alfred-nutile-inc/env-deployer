@@ -10,7 +10,7 @@
   "require": {
     "php": ">=5.4.0",
     "illuminate/support": "*",
-    "vlucas/phpdotenv": "~1.0",
+    "vlucas/phpdotenv": "*",
     "symfony/process": "~2.1",
     "illuminate/contracts": "*",
     "illuminate/console": "*",
