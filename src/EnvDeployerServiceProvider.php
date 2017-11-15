@@ -1,6 +1,5 @@
 <?php namespace AlfredNutileInc\EnvDeployer;
 
-
 class EnvDeployerServiceProvider extends \Illuminate\Support\ServiceProvider
 {
 
@@ -15,17 +14,13 @@ class EnvDeployerServiceProvider extends \Illuminate\Support\ServiceProvider
 
     public function register()
     {
-        $this->app['envdeployer.push'] = $this->app->share(
-            function ($app) {
-                return new EnvDeployerCommand();
-            }
-        );
+        $this->app->singleton('envdeployer.push', function($app) {
+            return new EnvDeployerCommand();
+        });
 
-        $this->app['envdeployer.make-example'] = $this->app->share(
-            function ($app) {
-                return new EnvDeployerMakeExampleCommand(new BuildArrayFromEnv());
-            }
-        );
+        $this->app->singleton('envdeployer.make-example', function($app) {
+            return new EnvDeployerMakeExampleCommand(new BuildArrayFromEnv());
+        });
 
         $this->commands('envdeployer.push', 'envdeployer.make-example');
     }
